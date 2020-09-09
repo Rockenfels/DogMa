@@ -1,4 +1,3 @@
-require 'pry'
 require 'rails_helper'
 RSpec.describe Dog, type: :model do
   before(:all) do
