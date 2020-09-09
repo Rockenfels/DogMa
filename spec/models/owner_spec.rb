@@ -32,6 +32,11 @@ RSpec.describe Owner, type: :model do
     expect(owner.valid?).to be false
   end
 
+it 'has a location and an about me field' do
+  owner = Owner.new
+  expect(owner).to respond_to(:location, :about_me)
+end
+
   describe 'authenticate' do
     it 'returns the owner if credentials match' do
       owner = Owner.new

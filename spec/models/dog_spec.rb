@@ -1,8 +1,14 @@
+require 'pry'
 require 'rails_helper'
 RSpec.describe Dog, type: :model do
-  before do
-    # ray = Owner.new(name: 'Ray O')
-    @dog = Dog.new(name: 'Ripton', breed: 'Hound/Lab', age:'6', gender: 'Male', description:'He likes 3 things: trash, scents, and snuggles', hometown: 'Colorado Springs, CO')
+  before(:all) do
+    @owner = Owner.create(name: 'Ray O', password:'foo', password_confirmation: 'foo', location: 'co', about_me: 'I love dogs!')
+    @dog = Dog.create(name: 'Ripton', breed: 'Hound/Lab', age:'6', gender: 'Male', description:'He likes 3 things: trash, scents, and snuggles', hometown: 'Colorado Springs, CO')
+    @owner.dogs << @dog
+  end
+
+  after(:all) do
+    DatabaseCleaner.clean_with(:truncation)
   end
 
   it 'has a name field' do
@@ -27,7 +33,7 @@ RSpec.describe Dog, type: :model do
 
 #ADD A VIRTUAL TO DOG CLASS FOR OWNER_NAME
   it 'has an owner field' do
-    expect(@dog).to respond_to(:owner_id)
+    expect(@dog.owner.id).to eq(@owner.id)
   end
 
 #ADD A VIRTUAL TO DOG CLASS FOR SHELTER_NAME

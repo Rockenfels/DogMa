@@ -6,9 +6,9 @@ class CreateDogs < ActiveRecord::Migration[6.0]
       t.string :age
       t.string :gender
       t.string :description
-      t.string :shelter_id
+      t.integer :owner_id
       t.string :hometown
-      t.string :owner_id
+      t.integer :shelter_id
     end
   end
 end

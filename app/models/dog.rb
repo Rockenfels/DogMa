@@ -1,5 +1,5 @@
 class Dog < ApplicationRecord
-  belongs_to :owners
-  belongs_to :shelters
+  has_one :owner
+  has_one :shelter
 
 end

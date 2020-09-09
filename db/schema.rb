@@ -18,9 +18,9 @@ ActiveRecord::Schema.define(version: 2020_09_09_024527) do
     t.string "age"
     t.string "gender"
     t.string "description"
-    t.string "shelter_id"
+    t.integer "owner_id"
     t.string "hometown"
-    t.string "owner_id"
+    t.integer "shelter_id"
   end
 
   create_table "owners", force: :cascade do |t|

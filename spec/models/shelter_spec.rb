@@ -32,6 +32,11 @@ RSpec.describe Shelter, type: :model do
     expect(shelter.valid?).to be false
   end
 
+  it 'has a location and an about us field' do
+    shelter = Shelter.new
+    expect(shelter).to respond_to(:location, :about_us)
+  end
+
   describe 'authenticate' do
     it 'returns the shelter if credentials match' do
       shelter = Shelter.new
