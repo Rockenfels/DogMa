@@ -2,9 +2,13 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :dogs, :shelters
   resources :owners, except: [:index]
+  resources :sessions, only: [:new, :create, :destroy]
 
-  get '/owners/login' to: 'owners#new'
-  get '/shelters/login' to: 'shelters#new'
+  get 'owners/login', to: 'owners#new'
+  get 'shelters/login', to: 'shelters#new'
+  get 'owners/logout', to: 'owners#destroy'
+  get 'shelters/logout', to: 'shelters#destroy'
+  
   root to: 'static#index'
 end
 
