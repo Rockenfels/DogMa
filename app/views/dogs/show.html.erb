@@ -1,0 +1,13 @@
+<h1>Look at this dog!</h1>
+<h2>Name: <%= @dog.name %></h2>
+<% if @dog.owner != nil %>
+  <h2>Owner: <%= @dog.owner.name  %></h2>
+<% esle %>
+  <h2>Sheltered by: <%= @dog.shelter.name %></h2>
+<% end %>
+<h3>Breed: <%= @dog.breed %></h3>
+<h3>Age: <%= @dog.age %></h3>
+<h3>Gender: <%= @dog.gender %></h3>
+<h3>Hometown: <%= @dog.hometown %></h3>
+<h3>Descritpion: <%= @dog.description %></h3>
+#ADD IMAGE TAGS HERE WHEN YOU ADD THEM IN!

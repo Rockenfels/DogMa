@@ -1,3 +1,3 @@
 def validate_owner(session)
-    session[:owner_id] === current_owner().id ? true : false
+    current_owner(session) != nil && Owner.exitsts?(current_owner(session).id) ? true : false
 end

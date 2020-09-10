@@ -21,7 +21,7 @@ class DogsController < ApplicationController
         redirect_to index_path, alert: "Please login or signup first"
       else
         render :layout => 'owners'
-        @owner = Owner.find(session[:owner_id])
+        @owner = current_owner(session)
         @dog = Dog.new(dog_params)
         @owner.dogs << @dog
         redirect_to owner_path(@owner)
@@ -36,6 +36,8 @@ class DogsController < ApplicationController
         @shelter.dogs << @dog
         redirect_to shelter_path(@shelter)
       end
+    else
+      redirect_to dogs_path, alert: 'You must be logged in to edit dog information.'
     end
   end
 
@@ -44,6 +46,8 @@ class DogsController < ApplicationController
       @dog = current_owner().dogs.find(params[:id])
     elsif validate_shelter(session)
       @dog = current_shelter().dogs.find(params[:id])
+    else
+      @dog = Dog.find(params[:id])
     end
   end
 
@@ -52,9 +56,38 @@ class DogsController < ApplicationController
   end
 
   def edit
+    if validate_owner(session)
+      @dog = current_owner().dogs.find(params[:id])
+    elsif validate_shelter(session)
+      @dog = current_shelter().dogs.find(params[:id])
+    else
+      redirect_to dogs_path, alert: 'Please sign in to edit dog information.'
+    end
   end
 
   def update
+    if validate_owner(session)
+      @dog = current_owner().dogs.find(params[:id])
+      redirect_to dog_path(@dog)
+    elsif validate_shelter(session)
+      @dog = current_shelter().dogs.find(params[:id])
+      redirect_to dog_path(@dog)
+    else
+      redirect_to dogs_path, alert: 'Please sign in to edit dog information.'
+    end
+  end
+
+  def destroy
+    if validate_owner(session)
+      @dog = current_owner().dogs.find(params[:id]).destory
+      redirect_to owner_path(current_owner(session).id)
+    elsif validate_shelter(session)
+      @dog = current_shelter().dogs.find(params[:id]).destroy
+      redirect_to shelter_path(current_shelter(session).id)
+    else
+      redirect_to dogs_path, alert: 'You must be signed in to remove a dog.'
+    end
+
   end
 
   private
