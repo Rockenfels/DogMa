@@ -1,0 +1,12 @@
+<h1>Add your dog!</h1>
+<%= form_for @dog do |f| %>
+  <%= render "shared/errors", object: @dog %>
+  <%= f.text_field :name %>
+  <%= f.text_field :breed %>
+  <%= f.text_field :age %>
+  <%= f.text_field :gender %>
+  <%= f.text_field :hometown %>
+  <%= f.text_area :description %>
+
+#need to add photo upload fields somehow
+<% end %>

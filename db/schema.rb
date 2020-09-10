@@ -11,7 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2020_09_09_024527) do
-
+#ADD PHOOT BLOB SLOTS (MAYBE)
   create_table "dogs", force: :cascade do |t|
     t.string "name"
     t.string "breed"
