@@ -11,29 +11,31 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2020_09_09_024527) do
-#ADD PHOOT BLOB SLOTS (MAYBE)
+
   create_table "dogs", force: :cascade do |t|
     t.string "name"
     t.string "breed"
     t.string "age"
     t.string "gender"
     t.string "description"
-    t.integer "owner_id"
     t.string "hometown"
+    t.integer "owner_id"
     t.integer "shelter_id"
+    t.index ["owner_id"], name: "index_dogs_on_owner_id"
+    t.index ["shelter_id"], name: "index_dogs_on_shelter_id"
   end
 
   create_table "owners", force: :cascade do |t|
     t.string "name"
     t.string "password_digest"
-    t.string "location"
+    t.string "hometown"
     t.string "about_me"
   end
 
   create_table "shelters", force: :cascade do |t|
     t.string "name"
     t.string "password_digest"
-    t.string "location"
+    t.string "hometown"
     t.string "about_us"
   end
 

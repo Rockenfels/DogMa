@@ -1,0 +1,10 @@
+<h1>Enter your information</h1>
+
+<%= form_for :owner, url: '/owners' do |f| %>
+  Name: <%= f.text_field :name %>
+  Email: <%= f.text_field :email %>
+  Hometown
+  Password: <%= f.password_field :password %>
+  Password Confirmation: <%= f.password_field :password_confirmation %>
+  <%= f.submit "Submit" %>
+<% end %>

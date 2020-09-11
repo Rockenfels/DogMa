@@ -5,3 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
+owners = Owner.create([{name: Faker::Name.name, password:'foo', password_confirmation: 'foo', hometown: Faker::Address.state},{name: Faker::Name.name, password:'bar', password_confirmation: 'bar', hometown: Faker::Address.state}])
