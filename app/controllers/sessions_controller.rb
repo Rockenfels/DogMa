@@ -14,15 +14,19 @@ class SessionsControlelr < ApplicationController
   end
 
 
-  def destroy
-    if validate_owner(session)
+  def destroyOwner
+    if validate_owner(session) && current_owner(session) = params[:id]
       session.delete :owner_id
-      redirect_to :root
-    elsif validate_shelter(session)
-      session.delete :shelter_id
       redirect_to :root
     else
       redirect_to :root, alert: 'You\'re barking up the wrong tree!'
+    end
+  end
+
+  def destroyShelter
+    if validate_shelter(session) && current_shelter(session) = params[:id]
+      session.delete :shelter_id
+      redirect_to :root
     end
   end
 end

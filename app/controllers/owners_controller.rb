@@ -42,7 +42,13 @@ class OwnersController
     end
   end
 
-  
+  def destroy
+    if validate_owner(session) && curent_owner(session) = params[:id]
+      @owner = Owner.find(current_owner(session))
+    else
+      redirect_to :root, alert: 'Please login, signup, or edit your own profile.'
+    end
+  end
 
   private
 
