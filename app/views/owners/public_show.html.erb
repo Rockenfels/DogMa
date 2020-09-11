@@ -1,0 +1,15 @@
+<h1>Here's their information</h1>
+<% #ADD PHOTO %>
+<h2>Name: <%= @owner.name %></h2>
+<h2>Home State: <%= @owner.home_state %></h2>
+<h2>Dogs: </h2>
+<br>
+<div class="dog-box">
+  <% @owner.dogs.each do |dog| %>
+    <div class="dog-tile">
+      <% #ADD PHOTO %>
+      <h3><%= dog.name %>, <%= dog.age %></h3>
+      <h3><%= dog.breed %></h3>
+    </div>
+  <% end %>
+</div>
