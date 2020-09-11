@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   resources :dogs, :shelters, :owners
   resources :sessions, only: [:new, :create, :destroy]
 
-  get 'owners/login', to: 'owners#new'
-  get 'shelters/login', to: 'shelters#new'
-  get 'owners/logout', to: 'owners#destroy'
-  get 'shelters/logout', to: 'shelters#destroy'
+  get 'owners/login', to: 'sessions#createOwner'
+  get 'shelters/login', to: 'sessions#createShelter'
+  get 'owners/logout', to: 'sessions#destroyOwner'
+  get 'shelters/logout', to: 'sessions#destroyShelter'
 
   root to: 'static#index'
 end
