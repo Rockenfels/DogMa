@@ -1,5 +1,6 @@
 class DogsController < ApplicationController
   def index
+    @dogs = Dog.all
   end
   def new
     @dog = Dog.new()
@@ -49,10 +50,6 @@ class DogsController < ApplicationController
     else
       @dog = Dog.find(params[:id])
     end
-  end
-
-  def index
-      @dogs = Dogs.all
   end
 
   def edit

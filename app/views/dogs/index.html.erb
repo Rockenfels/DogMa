@@ -1,0 +1,5 @@
+<h1>Look at these dogs!</h1>
+<% @dogs.each do |dog| %>
+  <% #ADD IMAGE %>
+  <a href=<%= dog_path(dog.id) %>><%= dog.name %>, <%= dog.age %></a>
+<% end %>
