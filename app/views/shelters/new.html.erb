@@ -1,4 +1,4 @@
-<h1>Enter your information</h1>
+<h1>Enter your organization's information</h1>
 
 <%= form_for :owner, url: '/owners' do |f| %>
   Name: <%= f.text_field :name %>
@@ -6,6 +6,6 @@
   Home State: <%= f.text_field :home_state %>
   Password: <%= f.password_field :password %>
   Password Confirmation: <%= f.password_field :password_confirmation %>
-  Tell us about yourself: <%= f.text_area :about_me %>
+  Tell us about your organization: <%= f.text_area :about_us %>
   <%= f.submit "Create" %>
 <% end %>

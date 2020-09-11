@@ -1,6 +1,4 @@
 module ApplicationHelper
-  helper_method :current_owner
-  helper_method :current_shelter
 
   def current_shelter(session)
     session[:shelter_id] ||= nil

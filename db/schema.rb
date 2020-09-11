@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2020_09_09_024527) do
     t.string "age"
     t.string "gender"
     t.string "description"
-    t.string "hometown"
+    t.string "home_state"
     t.integer "owner_id"
     t.integer "shelter_id"
     t.index ["owner_id"], name: "index_dogs_on_owner_id"
@@ -27,16 +27,18 @@ ActiveRecord::Schema.define(version: 2020_09_09_024527) do
 
   create_table "owners", force: :cascade do |t|
     t.string "name"
-    t.string "password_digest"
-    t.string "hometown"
+    t.string "email"
+    t.string "home_state"
     t.string "about_me"
+    t.string "password_digest"
   end
 
   create_table "shelters", force: :cascade do |t|
     t.string "name"
-    t.string "password_digest"
-    t.string "hometown"
+    t.string "email"
+    t.string "home_state"
     t.string "about_us"
+    t.string "password_digest"
   end
 
 end
