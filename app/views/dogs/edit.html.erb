@@ -1,11 +1,17 @@
 <h1>Edit your dog!</h1>
 <%= form_for @dog do |f| %>
   <%= render "shared/errors", object: @dog %>
+  <%= f.label :name %>
   <%= f.text_field :name %>
+  <%= f.label :breed %>
   <%= f.text_field :breed %>
+  <%= f.label :age %>
   <%= f.text_field :age %>
+  <%= f.label :gender %>
   <%= f.text_field :gender %>
-  <%= f.text_field :hometown %>
+  <%= f.label :home_state %>
+  <%= f.text_field :home_state %>
+  <%= f.label :description %>
   <%= f.text_area :description %>
   <%= f.submit 'Update!' %>
 #need to add photo upload fields somehow
