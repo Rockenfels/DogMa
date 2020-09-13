@@ -1,0 +1,17 @@
+<h1>Here's a look at the adoption you're proposing: </h1>
+Owner: <%= f.text_field @owner.name, disabled: true %>
+Shelter: <%= f.text_field @shelter.name, disabled: true %>
+Dog to be adopted: <%= f.text_field @dog.name, disabled: true %>
+<ol>
+  <li>Age: <%= @dog.age %></li>
+  <li>Breed: <%= @dog.breed %></li>
+  <li>Gender: <%= @dog.gender %></li>
+  <li>Description: <%= @dog.description %></li>
+</ol>
+<%= form_for :adoption, url: 'adoptions' do |f| %>
+  Confirmation of Adoption: <%= f.check_box_tag @adoption.owner_conf, 'confirmed', 'true', disabled: true %>
+  <%= f.hidden_field @shelter, @shelter.id %>
+  <%= f.hidden_field @dog, @dog.id %>
+  <%= f.submit "Say goodbye" %>
+<% end %>
+<%= button_to owner_path(@owner), 'I\'m not ready yet...' %>

@@ -1,9 +1,0 @@
-<h1>Update adoption information</h1>
-
-<%= form_for :adoption, url: '/adoptions' do |f| %>
-  Owner: <%= f.text_field @owner.name %>
-  Shelter: <%= f.text_field @shelter.name %>
-  Dog to be adopted: <%= f.text_field @dog.name %>
-  Confirmation of Adoption: <%= f.check_box_tag @adoption.owner_conf, 'confirmed', 'true' %>
-  <%= f.submit "Create" %>
-<% end %>
