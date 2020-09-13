@@ -4,6 +4,8 @@ class CreateAdoptions < ActiveRecord::Migration[6.0]
       t.belongs_to :owner_id
       t.belongs_to :shelter_id
       t.belongs_to :dog_id
+      t.boolean :owner_conf, default: false
+      t.boolean :shelter_conf, defalut: false
       t.boolean :adopted, default: false
     end
   end

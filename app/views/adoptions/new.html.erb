@@ -1,0 +1,8 @@
+<h1>Enter adoption information</h1>
+
+<%= form_for :adoption, url: '/adoptions' do |f| %>
+  Owner Email: <%= f.text_field :owner_email %>
+  Shelter Emal: <%= f.text_field :shelter_email %>
+  Dog: <%= f.text_field :dog_id %>
+  <%= f.submit "Create" %>
+<% end %>

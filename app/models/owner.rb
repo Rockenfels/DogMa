@@ -1,6 +1,7 @@
 class Owner < ApplicationRecord
-  #ADD VALIDATIONS 
+  #ADD VALIDATIONS
   has_secure_password
   has_many :dogs
-  has_many :shelters, through: :dogs
+  has_many :adoptions
+  has_many :shelters, through: :adoptions
 end
