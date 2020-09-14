@@ -6,6 +6,7 @@ class CreateOwners < ActiveRecord::Migration[6.0]
       t.string :home_state
       t.string :about_me
       t.string :password_digest
+      t.string :uid
     end
   end
 end

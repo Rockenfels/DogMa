@@ -4,6 +4,7 @@ module SheltersHelper
   end
 
 
-def validate_shelter_adopt(email)
-  !Shelter.find_by(email: email).nil? ? true : false
+  def validate_shelter_adopt(email)
+    !Shelter.find_by(email: email).nil? ? true : false
+  end
 end

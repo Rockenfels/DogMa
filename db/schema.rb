@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_09_024527) do
+ActiveRecord::Schema.define(version: 2020_09_11_194615) do
+
+  create_table "adoptions", force: :cascade do |t|
+    t.integer "owner_id"
+    t.integer "shelter_id"
+    t.integer "dog_id"
+    t.boolean "owner_conf", default: false
+    t.boolean "shelter_conf"
+    t.boolean "adopted", default: false
+    t.index ["dog_id"], name: "index_adoptions_on_dog_id"
+    t.index ["owner_id"], name: "index_adoptions_on_owner_id"
+    t.index ["shelter_id"], name: "index_adoptions_on_shelter_id"
+  end
 
   create_table "dogs", force: :cascade do |t|
     t.string "name"
@@ -31,6 +43,7 @@ ActiveRecord::Schema.define(version: 2020_09_09_024527) do
     t.string "home_state"
     t.string "about_me"
     t.string "password_digest"
+    t.string "uid"
   end
 
   create_table "shelters", force: :cascade do |t|
@@ -39,6 +52,7 @@ ActiveRecord::Schema.define(version: 2020_09_09_024527) do
     t.string "home_state"
     t.string "about_us"
     t.string "password_digest"
+    t.string "uid"
   end
 
 end

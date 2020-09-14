@@ -53,6 +53,6 @@ class OwnersController
   private
 
   def owner_params
-    params.require(:owner).permit(:name, :email, :home_state, :about_me, :password, :password_confirmation)
+    params.require(:owner).permit(:name, :email, :home_state, :about_me, :password, :password_confirmation, :uid)
   end
 end
