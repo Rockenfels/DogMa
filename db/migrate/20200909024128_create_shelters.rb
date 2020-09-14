@@ -6,7 +6,6 @@ class CreateShelters < ActiveRecord::Migration[6.0]
       t.string :home_state
       t.string :about_us
       t.string :password_digest
-      t.string :uid
     end
   end
 end

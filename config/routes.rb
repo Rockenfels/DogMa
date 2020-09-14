@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   get 'adopt', to: 'adoptions#new'
   get 'abandon', to: 'adoptions#new'
   get 'move', to: 'adoptions#move'
+  get '/auth/facebook/callback' => 'sessions#createOwner'
   root to: 'static#index'
 end

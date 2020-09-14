@@ -12,17 +12,10 @@ class SessionsControlelr < ApplicationController
       return head(:forbidden) unless @owner.authenticate(params[:password])
       session[:owner_id] = @owner.id
       redirect_to owner_path(@owner)
+    end
   end
 
   def createShelter
-    if auth['uid']
-      @shelter = Shelter.find_or_create_by(uid: auth['uid']) do |s|
-        s.name = auth['info']['name']
-        s.email = auth['info']['email']
-      end
-      session[:shelter_id] = @shelter.id
-      redirect_to shelter_path(@shelter)
-    else
       @shelter = Shelter.find_by(email: params[:email])
       return head(:forbidden) unless @shelter.authenticate(params[:password])
       session[:shelter_id] = @shelter.id

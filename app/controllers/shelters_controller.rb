@@ -47,6 +47,6 @@ class SheltersController
   private
 
   def shelter_params
-    params.require(:shelter).permit(:name, :email, :home_state, :about_us, :password, :password_confirmation, :uid)
+    params.require(:shelter).permit(:name, :email, :home_state, :about_us, :password, :password_confirmation)
   end
 end
