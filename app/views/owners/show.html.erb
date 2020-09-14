@@ -1,0 +1,5 @@
+<% if current_owner == @owner.id %>
+<%= render 'private' %>
+<% else %>
+<%= render 'public' %>
+<% end %>

@@ -1,0 +1,7 @@
+<h1>Owner Login</h1>
+<%= form_for @owner, url: owner_sessions_path do |f| %>
+  Email: <%= f.text_field :email %>
+  Password: <%= f.password_field :password %>
+  Password Confirmation: <%=  f.password_field :password_confirmation %>
+  <%= f.submit "Login" %>
+<% end %>

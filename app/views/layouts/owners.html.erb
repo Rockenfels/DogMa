@@ -12,11 +12,11 @@
   <body>
     <nav id='nav'>
       <ul id='nav-ul'>
-        <li><a href=<%= owner_path(current_owner(session)) %>>Your Account</a></li>
+        <li><a href=<%= owner_path(current_owner()) %>>Your Account</a></li>
         <li><a href=<%= owners_path %>>Owners</a></li>
         <li><a href=<%= dogs_path %>>Dogs</a></li>
         <li><a href=<%= shelters_path %>>Shelters</a></li>
-        <li><a href=<%= owners_logout_path %>>Logout</a></li>
+        <li><%= link_to 'Logout', owner_session_path(current_owner()), method: :delete %></li>
       </ul>
     </nav>
 

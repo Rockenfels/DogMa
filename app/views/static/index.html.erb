@@ -2,14 +2,13 @@
   <h1>Welcome to DogMa! Please Select  a login option below: </h1>
   <br>
   <div id="login-options">
-    <%= button_to 'Shelter Login', '/shelters/login' %>
-    <%= button_to 'Owner Login', '/owners/login' %>
-    <br> <h3>or</h3> <br>
-    <%= button_to 'Log in with Facebook!', '/auth/facebook' %>
+    <%= link_to 'Shelter Login',  new_shelter_session_path %>
+    <%= link_to 'Owner Login', new_owner_session_path %>
+    <h3>or, owners have the option to <%= link_to 'Log in with Facebook!', '/auth/facebook' %></h3>
   </div>
-
+  <br>
   <div id="signup-options">
-    <%= button_to 'Shelter Signup', new_shelter_path %>
-    <%= button_to 'Owner Signup', new_owner_path %>
+    <%= link_to 'Shelter Signup', new_shelter_path %>
+    <%= link_to 'Owner Signup', new_owner_path %>
   </div>
 </div>

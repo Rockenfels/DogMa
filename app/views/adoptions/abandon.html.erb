@@ -1,5 +1,5 @@
-<h1>Here's a look at the adoption you're proposing: </h1>
-<h2>Owner: <%= f.text_field @owner.name, disabled: true %></h2>
+<h1>Here's a last look at your surrender: </h1>
+<h2>Owner: <%= @owner.name %></h2>
 <%= form_for @adoption, url: 'adoptions' do |f| %>
 <%= f.label  %>
 <input list="shelters" id="shelter-choice" name="shelter-choice" />
@@ -9,7 +9,7 @@
     <option value=<%= shelter.name %>>
   <% end %>
 </datalist>
-<h2>  Dog to be adopted: <%= f.text_field @dog.name, disabled: true %></h2>
+<h2>  Dog to be surrendered: <%= f.text_field @dog.name, disabled: true %></h2>
   <ol>
     <li>Age: <%= @dog.age %></li>
     <li>Breed: <%= @dog.breed %></li>

@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(version: 2020_09_11_194615) do
     t.string "home_state"
     t.string "about_us"
     t.string "password_digest"
-    t.string "uid"
   end
 
 end

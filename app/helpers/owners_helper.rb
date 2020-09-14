@@ -1,6 +1,5 @@
 module OwnersHelper
-
-  def validate_owner(session)
-      current_owner(session) != nil && Owner.exitsts?(current_owner(session)) ? true : false
+  def validate_owner
+      current_owner() != nil && Owner.exists?(current_owner()) ? true : false
   end
 end

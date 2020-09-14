@@ -17,10 +17,10 @@
         <%= f.label 'Give me up: ' %>
         <%= f.button_to 'Rehome', abandon_path  %>
       <% end %>
-      <h4><%= button_to "Remove Dog", { action: "delete", id: dog.id }, method: :delete, data: { confirm: "Are you sure?" }%></h4>
+      <h4><%= button_to "Remove Dog", dog_path(dog.id), method: :delete %></h4>
     </div>
   <% end %>
 </div>
-
+<h2><a href=<%= new_dog_path %>>Add a Dog!</a></h2>
 <h2><a href=<%= edit_owner_path(@owner.id) %>>Edit your info</a></h2>
-<h2><%= button_to "Delete Account", { action: "delete", id: @owner.id }, method: :delete, data: { confirm: "Are you sure?" } %></h2>
+<h2><%= link_to 'Remove Account', owner_session_path(@owner.id), method: :delete %></h2>

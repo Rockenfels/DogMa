@@ -1,6 +1,6 @@
 module SheltersHelper
-  def validate_shelter(session)
-        current_shelter(session) != nil && Shelter.exitsts?(current_shelter(session).id) ? true : false
+  def validate_shelter()
+        current_shelter() != nil && Shelter.exists?(current_shelter().id) ? true : false
   end
 
 

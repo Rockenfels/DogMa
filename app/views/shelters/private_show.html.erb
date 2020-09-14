@@ -12,10 +12,10 @@
       <h4><%= dog.name %>, <%= dog.age %></h4>
       <h4><%= dog.breed %></h4>
       <h4><a href=<%= edit_dog_path(dog.id) %>>Edit dog info</a></h4>
-      <h4><%= button_to "Remove Dog", { action: "delete", id: dog.id }, method: :delete, data: { confirm: "Are you sure?" }%></h4>
+      <h4><%= button_to "Remove Dog", dog_path(dog.id), method: :delete %></h4>
     </div>
   <% end %>
 </div>
-
+<h2><a href=<%= new_dog_path %>>Add a Dog!</a></h2>
 <h2><a href=<%= edit_shelter_path(@shelter.id) %>>Edit your info</a></h2>
-<h2><%= button_to "Delete Account", { action: "delete", id: @shelter.id }, method: :delete, data: { confirm: "Are you sure?" } %></h2>
+<h2><%= link_to 'Remove Account', shelter_session_path(@shelter.id), method: :delete %></h2>
