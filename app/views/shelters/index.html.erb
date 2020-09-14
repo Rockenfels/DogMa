@@ -1,0 +1,12 @@
+<div class="yield-field">
+  <h1>Here are our DogMa Shelters!</h1>
+  <% @shelters.each do |shelter| %>
+  <a href=<%= shelter_path(shelter) %>>
+    <div class="shelter-tile">
+      <h2>Name: <%= shelter.name %></h2>
+      <h2>Home State: <%= shelter.home_state %></h2>
+      <h2>Dogs Available: <%= shelter.dogs.count %></h2>
+    </div>
+  </a>
+  <% end %>
+</div>

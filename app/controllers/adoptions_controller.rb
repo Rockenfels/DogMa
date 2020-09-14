@@ -24,7 +24,7 @@ class AdoptionsController < ApplicationController
     elsif params[:shelter][:id].nil?
       @adoption = Adoption.new()
       @owner = Owner.find_by(current_owner(session))
-      @dog = @owner.dogs.find_by(id: params[:dog][:id])
+      @dog = @owner.dogs.where(id: params[:dog][:id])
       @shelter = Shelter.new()
       #faulty multiple login check
       if session[:owner_id] && !session[:shelter_id]
@@ -61,5 +61,18 @@ class AdoptionsController < ApplicationController
         redirect_to owner_path(@owner), alert: 'Move in progress- you\'ll see this take effect if the shelter accepts.'
       end
     end
+  end
+
+  def move
+    @adoption = Adoption.find_by(id: params[:adoption][:id])
+    @dog = @adoption.dog
+    @shelter = @adoption.shelter
+    @owner = @adoption.owner
+
+    #checks for owner & shelter confirmation of adoption & that the transfer info passed is valid
+    if @adoption.owner_conf && @adoption.shelter_conf && @adoption.transfer() != false
+      @adoption.transfer()
+    end
+
   end
 end

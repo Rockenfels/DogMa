@@ -5,7 +5,7 @@ class DogsController < ApplicationController
   def new
     @dog = Dog.new()
     if session[:owner_id] && !session[:shelter_id]
-      if session[:owner_id] && !Owner.exists?(session[:owner_id])
+      if validate_owner(session)
         redirect_to index_path, alert: "Please login or signup first"
       end
     elsif session[:shelter_id] && !session[:owner_id]

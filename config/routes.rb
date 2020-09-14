@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   get 'shelters/logout', to: 'sessions#destroyShelter'
   get 'adopt', to: 'adoptions#new'
   get 'abandon', to: 'adoptions#new'
+  get 'move', to: 'adoptions#move'
   root to: 'static#index'
 end

@@ -9,12 +9,14 @@ class Adoption < ApplicationRecord
       @shelter = self.shelter
       @dog = self.dog
 
-      if @owner.dogs.find_by(id: @dog.id).nil?
+      if @owner.dogs.find_by(id: @dog.id).nil? && !@shelter.dogs.find_by(id: @dog.id).nil?
         @owner.dogs << @dog
         @dog.shelter = nil
-      else
+      elsif !@owner.dogs.find_by(id: @dog.id).nil? && @shelter.dogs.find_by(id: @dog.id).nil?
         @shelter.dogs << @dog
         @dog.owner = nil
+      else
+        return false
       end
     end
   end

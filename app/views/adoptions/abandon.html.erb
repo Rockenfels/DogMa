@@ -1,16 +1,23 @@
 <h1>Here's a look at the adoption you're proposing: </h1>
-Owner: <%= f.text_field @owner.name, disabled: true %>
-Shelter: <%= f.text_field @shelter.name, disabled: true %>
-Dog to be adopted: <%= f.text_field @dog.name, disabled: true %>
-<ol>
-  <li>Age: <%= @dog.age %></li>
-  <li>Breed: <%= @dog.breed %></li>
-  <li>Gender: <%= @dog.gender %></li>
-  <li>Description: <%= @dog.description %></li>
-</ol>
-<%= form_for :adoption, url: 'adoptions' do |f| %>
-  Confirmation of Adoption: <%= f.check_box_tag @adoption.owner_conf, 'confirmed', 'true', disabled: true %>
-  <%= f.hidden_field @shelter, @shelter.id %>
+<h2>Owner: <%= f.text_field @owner.name, disabled: true %></h2>
+<%= form_for @adoption, url: 'adoptions' do |f| %>
+<%= f.label  %>
+<input list="shelters" id="shelter-choice" name="shelter-choice" />
+
+<datalist id="shelters">
+  <% Shelter.all.each do |shelter| %>
+    <option value=<%= shelter.name %>>
+  <% end %>
+</datalist>
+<h2>  Dog to be adopted: <%= f.text_field @dog.name, disabled: true %></h2>
+  <ol>
+    <li>Age: <%= @dog.age %></li>
+    <li>Breed: <%= @dog.breed %></li>
+    <li>Gender: <%= @dog.gender %></li>
+    <li>Description: <%= @dog.description %></li>
+  </ol>
+
+<h2>  Confirmation of Transfer: <%= f.check_box_tag @adoption.owner_conf, 'confirmed', 'true', disabled: true %></h2>
   <%= f.hidden_field @dog, @dog.id %>
   <%= f.submit "Say goodbye" %>
 <% end %>

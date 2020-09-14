@@ -11,7 +11,12 @@
       <% #ADD PHOTO %>
       <h4><%= dog.name %>, <%= dog.age %></h4>
       <h4><%= dog.breed %></h4>
-      <h4><a href=<%= edit_dog_path(dog.id) %>>Edit my info</a></h4>
+      <h4><a href=<%= edit_dog_path(dog.id) %>>Edit dog info</a></h4>
+      <%= form_with model: dog do |f| %>
+        <%= f.hidden_field dog, dog.id %>
+        <%= f.label 'Give me up: ' %>
+        <%= f.button_to 'Rehome', abandon_path  %>
+      <% end %>
       <h4><%= button_to "Remove Dog", { action: "delete", id: dog.id }, method: :delete, data: { confirm: "Are you sure?" }%></h4>
     </div>
   <% end %>

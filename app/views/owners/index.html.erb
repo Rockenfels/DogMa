@@ -1,1 +1,12 @@
+<div class="yield-field">
 <h1>Here are our DogMa Owners!</h1>
+  <% @owners.each do |owner| %>
+  <a href=<%= owner_path(owner) %>>
+    <div class="shelter-tile">
+      <h2>Name: <%= owner.name %></h2>
+      <h2>Home State: <%= owner.home_state %></h2>
+      <h2>Dogs: <%= owner.dogs.count %></h2>
+    </div>
+  </a>
+  <% end %>
+</div>
