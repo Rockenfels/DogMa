@@ -1,8 +1,19 @@
+<% if !@adoptions.empty? %>
+  <h1>You have adoption(s) pending!</h1>
+
+  <% @adoptions.each  do |adoption| %>
+
+      <h2>Dog: <%= Dog.find_by(id: adoption.dog_id).name %></h2>
+      <h2>Potential Owner: <%= Owner.find_by(id: adoption.owner_id).name %></h2>
+      <%= link_to 'Confirm', {:controller => "adoptions", :action => 'move', :adoption => adoption.id } %>
+  <% end %>
+<% end %>
 <h1>Here's your information</h1>
 <% #ADD PHOTO %>
 <h3>Name: <%= @shelter.name %></h3>
 <h3>Email: <%= @shelter.email %></h3>
 <h3>Home State: <%= @shelter.home_state %></h3>
+<h3>Description: <%=  @shelter.about_us %></h3>
 <h3>Dogs: </h3>
 <br>
 <div class="dog-box">

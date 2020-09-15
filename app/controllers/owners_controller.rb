@@ -2,7 +2,7 @@ require 'pry'
 class OwnersController < ApplicationController
   include OwnersHelper
   include ApplicationHelper
-  layout 'owners'
+
   def new
     @owner = Owner.new()
   end
@@ -17,11 +17,10 @@ class OwnersController < ApplicationController
   end
 
   def show
-    if validate_owner()
+    if validate_owner() && current_owner().to_s == params[:id]
       @owner = Owner.find_by(id: current_owner())
     else
       @owner = Owner.find_by(id: params[:id])
-      binding.pry
     end
   end
 
@@ -30,16 +29,19 @@ class OwnersController < ApplicationController
   end
 
   def edit
-    if validate_owner() && curent_owner() == params[:id]
-      @owner = Owner.find(current_owner())
+
+    if validate_owner() && current_owner().to_s == params[:id]
+      @owner = Owner.find_by(id: current_owner())
     else
       redirect_to :root, alert: 'Please login, signup, or edit your own profile.'
     end
   end
 
   def update
-    if validate_owner() && curent_owner() == params[:id]
-      @owner = Owner.find(current_owner())
+    if validate_owner() && current_owner().to_s == params[:id]
+      @owner = Owner.find_by(id: current_owner())
+      @owner.update(owner_params)
+      redirect_to owner_path(@owner.id)
     else
       redirect_to :root, alert: 'Please login, signup, or edit your own profile.'
     end

@@ -1,21 +1,22 @@
 require 'pry'
 class ShelterSessionsController < ApplicationController
-
+  include ApplicationHelper
+  include OwnersHelper
+  include SheltersHelper
   def new
     @shelter = Shelter.new()
   end
 
   def create
-      @shelter = Shelter.find_by(email: params[:email])
-      return head(:forbidden) unless @shelter.authenticate(params[:password])
+      @shelter = Shelter.find_by(email: params[:shelter][:email])
+      return head(:forbidden) unless @shelter.authenticate(params[:shelter][:password])
       session[:shelter_id] = @shelter.id
-      @shelter.uid = auth['uid'] if !auth['uid'].nil?
       redirect_to shelter_path(@shelter.id)
   end
 
   def destroy
-    if validate_shelter && current_shelter == params[:id]
-      session.delete :shelter_id
+    if validate_shelter() && current_shelter().to_s() == params[:id]
+      session.delete(:shelter_id)
       redirect_to :root
     end
   end

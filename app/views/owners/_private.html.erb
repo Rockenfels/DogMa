@@ -3,6 +3,7 @@
 <h3>Name: <%= @owner.name %></h3>
 <h3>Email: <%= @owner.email %></h3>
 <h3>Home State: <%= @owner.home_state %></h3>
+<h3>Description: <%=  @owner.about_me %></h3>
 <h3>Dogs: </h3>
 <br>
 <div class="dog-box">
@@ -11,16 +12,12 @@
       <% #ADD PHOTO %>
       <h4><%= dog.name %>, <%= dog.age %></h4>
       <h4><%= dog.breed %></h4>
-      <h4><a href=<%= edit_dog_path(dog.id) %>>Edit dog info</a></h4>
-      <%= form_with model: dog do |f| %>
-        <%= f.hidden_field dog, dog.id %>
-        <%= f.label 'Give me up: ' %>
-        <%= f.button_to 'Rehome', abandon_path  %>
-      <% end %>
+      <%= link_to 'Edit dog info', edit_dog_path(dog.id) %>
+    
       <h4><%= button_to "Remove Dog", dog_path(dog.id), method: :delete %></h4>
     </div>
   <% end %>
 </div>
 <h2><a href=<%= new_dog_path %>>Add a Dog!</a></h2>
-<h2><a href=<%= edit_owner_path(@owner.id) %>>Edit your info</a></h2>
+<h4><%= link_to 'Edit your info', edit_owner_path(@owner.id) %></h4>
 <h2><%= link_to 'Remove Account', owner_session_path(@owner.id), method: :delete %></h2>

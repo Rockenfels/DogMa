@@ -32,8 +32,7 @@ class DogsController < ApplicationController
       elsif validate_owner()
         @owner = Owner.find_by(id: current_owner())
         @dog = Dog.create(dog_params)
-        @dog.owner_id = @owner.id
-        binding.pry
+        @owner.dogs << @dog
         redirect_to owner_path(@owner)
       end
     elsif session[:shelter_id] && !session[:owner_id]
@@ -44,7 +43,7 @@ class DogsController < ApplicationController
         @shelter = Shelter.find_by(id: current_shelter())
         @dog = Dog.create(dog_params)
         @shelter.dogs << @dog
-
+        redirect_to shelter_path(@shelter.id)
       end
     else
       redirect_to dogs_path, alert: 'You must be logged in to edit dog information.'
@@ -52,18 +51,23 @@ class DogsController < ApplicationController
   end
 
   def show
-    @dog = Dog.find_by(params[:id])
+    if validate_owner()
+      @owner = Owner.find_by(id: current_owner())
+      @dog = @owner.dogs.find_by(id: params[:id]) if @owner.dogs.find_by(id: params[:id])
+    end
+
     if @dog.nil?
       redirect_to dogs_path, alert: 'Dog not found.'
     end
   end
 
   def edit
-    @dog = Dog.find_by(id: params[:id])
-
+      @dog = Dog.find_by(id: params[:id])
     if validate_owner() && @dog.owner.id == current_owner()
       @owner = Owner.find_by(id: current_owner())
-    elsif validate_shelter && @dog.shelter.id == current_shelter()
+
+
+    elsif validate_shelter() && @dog.shelter.id == current_shelter()
       @dog = Shelter.find_by(id: current_shelter()).dogs.find(params[:id])
     else
       redirect_to dogs_path, alert: 'Please sign in to edit dog information.'
@@ -71,6 +75,7 @@ class DogsController < ApplicationController
   end
 
   def update
+    @dog = Dog.find_by(id: params[:id])
     if validate_owner() && @dog.owner.id == current_owner()
       @dog.update(dog_params)
       redirect_to dog_path(@dog.id)
@@ -83,11 +88,12 @@ class DogsController < ApplicationController
   end
 
   def destroy
+    @dog = Dog.find_by(id: params[:id])
     if validate_owner() && @dog.owner.id == current_owner()
-      @dog = current_owner().dogs.find(params[:id]).destory
-      redirect_to owner_path(current_owne())
-    elsif validate_shelter && @dog.shelter.id == current_shelter()
-      @dog = current_shelter().dogs.find(params[:id]).destroy
+      @dog = Owner.find_by(id: current_owner()).dogs.find(params[:id]).destroy
+      redirect_to owner_path(current_owner())
+    elsif validate_shelter() && @dog.shelter.id == current_shelter()
+      @dog = Shelter.find_by(current_shelter()).dogs.find(params[:id]).destroy
       redirect_to shelter_path(current_shelter.id)
     else
       redirect_to dogs_path, alert: 'You must be signed in to remove a dog.'

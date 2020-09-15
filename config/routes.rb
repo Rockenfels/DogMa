@@ -5,13 +5,11 @@ Rails.application.routes.draw do
   resources :shelters
   resources :owner_sessions, only: [:new, :create, :destroy]
   resources :shelter_sessions, only: [:new, :create, :destroy]
-  resource :adoptions, only: [:create]
-  
-  get '/adopt', to: 'adoptions#new'
-  get '/abandon', to: 'adoptions#new'
+  resource :adoptions, only: [:new, :create]
+
   get '/move', to: 'adoptions#move'
 
 
-  get '/auth/facebook/callback' => 'sessions#createOwner'
+  get '/auth/facebook/callback' => 'owner_sessions#create'
   root to: 'static#index'
 end

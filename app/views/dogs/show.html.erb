@@ -2,7 +2,7 @@
 <h2>Name: <%= @dog.name %></h2>
 <% if @dog.owner != nil %>
   <h2>Owner: <%= @dog.owner.name  %></h2>
-<% esle %>
+<% elsif @dog.shelter != nil %>
   <h2>Sheltered by: <%= @dog.shelter.name %></h2>
 <% end %>
 <h3>Breed: <%= @dog.breed %></h3>

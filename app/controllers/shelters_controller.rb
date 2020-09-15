@@ -1,8 +1,9 @@
+require 'pry'
 class SheltersController < ApplicationController
   include ApplicationHelper
-  include SheltrersHelper
+  include SheltersHelper
   include OwnersHelper
-  layout 'shelters'
+
 
   def new
     @shelter = Shelter.new()
@@ -11,19 +12,19 @@ class SheltersController < ApplicationController
   def create
     if session[:shelter_id].nil? && session[:shelter_id].nil?
       @shelter = Shelter.create(shelter_params)
-      redirect_to shelters_login_path
+      redirect_to new_shelter_session_path
     else
       redirect_to dogs_path, alert: 'You must sign out before creating a new account.'
     end
   end
 
   def show
-    if validate_shelter() && Shelter.find_by(id: curent_shelter()) == params[:id]
+    if validate_shelter()
       @shelter = Shelter.find_by(id: current_shelter())
-      render :private_show
+      @adoptions = Adoption.where(["shelter_id = ? and adopted = ?", @shelter.id, false])
     else
       @shelter = Shelter.find_by(id: params[:id])
-      render :public_show, layout => :application
+      @adoption = Adoption.new()
     end
   end
 

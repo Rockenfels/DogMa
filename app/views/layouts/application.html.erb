@@ -10,12 +10,38 @@
   </head>
 
   <body>
+    <% if validate_owner() %>
+    <nav id='nav'>
+      <ul id='nav-ul'>
+        <li><a href=<%= owner_path(current_owner()) %>>Your Account</a></li>
+        <li><a href=<%= owners_path %>>Owners</a></li>
+        <li><a href=<%= dogs_path %>>Dogs</a></li>
+        <li><a href=<%= shelters_path %>>Shelters</a></li>
+      </ul>
+      <% @owner =  Owner.find_by(id: current_owner())%>
+      <%= button_to "logout", {:controller => :owner_sessions,
+          :action => 'destroy', :id => @owner.id }, :method => :delete %>
+    </nav>
+    <% elsif validate_shelter() %>
+    <nav id='nav'>
+      <ul id='nav-ul'>
+        <li><a href=<%= shelter_path(current_shelter()) %>>Your Account</a></li>
+        <li><a href=<%= owners_path %>>Owners</a></li>
+        <li><a href=<%= dogs_path %>>Dogs</a></li>
+        <li><a href=<%= shelters_path %>>Shelters</a></li>
+      </ul>
+      <% @shelter =  Shelter.find_by(id: current_shelter())%> 
+      <%= button_to "logout", {:controller => :shelter_sessions,
+          :action => 'destroy', :id => @shelter.id }, :method => :delete %>
+    </nav>
+    <% else %>
     <nav id='nav'>
       <ul id='nav-ul'>
         <li><a href="/">Login</a></li>
         <li><a href=<%= dogs_path %>>Dogs</a></li>
         <li><a href=<%= shelters_path %>>Shelters</a></li>
       </ul>
+      <% end %>
     </nav>
 
     <%= yield %>
