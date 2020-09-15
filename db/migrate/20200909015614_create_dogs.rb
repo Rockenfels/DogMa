@@ -7,8 +7,8 @@ class CreateDogs < ActiveRecord::Migration[6.0]
       t.string :gender
       t.string :description
       t.string :home_state
-      t.belongs_to :owner, default: ' '
-      t.belongs_to :shelter, default: 
+      t.belongs_to :owner
+      t.belongs_to :shelter
     end
   end
 end

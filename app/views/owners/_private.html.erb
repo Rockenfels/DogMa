@@ -13,8 +13,8 @@
       <h4><%= dog.name %>, <%= dog.age %></h4>
       <h4><%= dog.breed %></h4>
       <%= link_to 'Edit dog info', edit_dog_path(dog.id) %>
-    
-      <h4><%= button_to "Remove Dog", dog_path(dog.id), method: :delete %></h4>
+      
+      <%= button_to "Remove Dog", dog_path(dog.id), method: :delete %>
     </div>
   <% end %>
 </div>

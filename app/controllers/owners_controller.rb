@@ -1,4 +1,3 @@
-require 'pry'
 class OwnersController < ApplicationController
   include OwnersHelper
   include ApplicationHelper

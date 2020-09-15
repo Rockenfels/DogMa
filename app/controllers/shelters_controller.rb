@@ -1,4 +1,3 @@
-require 'pry'
 class SheltersController < ApplicationController
   include ApplicationHelper
   include SheltersHelper

@@ -11,7 +11,9 @@
 
   <body>
     <% if validate_owner() %>
-    <nav id='nav'>
+    <nav id='header-nav'>
+      <%= image_tag ('dogma_logo.png'), class: 'nav-image' %>
+      <h1 id='nav-title'>DogMa</h1>
       <ul id='nav-ul'>
         <li><a href=<%= owner_path(current_owner()) %>>Your Account</a></li>
         <li><a href=<%= owners_path %>>Owners</a></li>
@@ -23,19 +25,23 @@
           :action => 'destroy', :id => @owner.id }, :method => :delete %>
     </nav>
     <% elsif validate_shelter() %>
-    <nav id='nav'>
+    <nav id='header-nav'>
+      <%= image_tag ('dogma_logo.png'), class: 'nav-image' %>
+      <h1 id='nav-title'>DogMa</h1>
       <ul id='nav-ul'>
         <li><a href=<%= shelter_path(current_shelter()) %>>Your Account</a></li>
         <li><a href=<%= owners_path %>>Owners</a></li>
         <li><a href=<%= dogs_path %>>Dogs</a></li>
         <li><a href=<%= shelters_path %>>Shelters</a></li>
       </ul>
-      <% @shelter =  Shelter.find_by(id: current_shelter())%> 
+      <% @shelter =  Shelter.find_by(id: current_shelter())%>
       <%= button_to "logout", {:controller => :shelter_sessions,
           :action => 'destroy', :id => @shelter.id }, :method => :delete %>
     </nav>
     <% else %>
-    <nav id='nav'>
+    <nav id='header-nav'>
+      <%= image_tag ('dogma_logo.png'), class: 'nav-image' %>
+      <h1 id='nav-title'>DogMa</h1>
       <ul id='nav-ul'>
         <li><a href="/">Login</a></li>
         <li><a href=<%= dogs_path %>>Dogs</a></li>

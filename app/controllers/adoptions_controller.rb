@@ -45,7 +45,6 @@ class AdoptionsController < ApplicationController
       transfer(@adoption, @shelter, @owner, @dog)
       @adoption.adopted = true
       @adoption.save
-      binding.pry
       redirect_to shelter_path(@shelter.id), alert: "Transfer made- here's your dog's new home!"
     else
       redirect_to shelter_path(@shelter.id), alert: 'Transfer not completed'
