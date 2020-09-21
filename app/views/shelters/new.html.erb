@@ -1,5 +1,16 @@
 <h1>Enter your organization's information</h1>
 
+<% if @shelter.errors.any? %>
+  <div id="error_explanation">
+    <h2>There were some errors:</h2>
+    <ul>
+      <% @shelter.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for @shelter, url: '/shelters' do |f| %>
   Name: <%= f.text_field :name %>
   Email: <%= f.text_field :email %>

@@ -7,13 +7,16 @@ class AdoptionsController < ApplicationController
 #Access to adoption form can only come from shelter page with hidden shelter & dog info fields in form
 #Only owners can adopt or abandon dogs; shelters must confirm
   def new
-      @dog = Dog.find_by(id: params[:dog][:id])
+      @dog = Dog.find_by(id: params[:dog])
     #checks for shelter id to indicate adoption
     if validate_owner() && !@dog.shelter.nil?
       @adoption = Adoption.new()
       @shelter = Shelter.find_by(id: @dog.shelter.id)
       @owner = Owner.find_by(id: current_owner())
-      render 'adopt'
+      @owner.adoptions << @adoption
+      @shelter.adoptions << @adoption
+      @dog.adoptions << @adoption
+      render 'new'
     end
   end
 
@@ -21,16 +24,16 @@ class AdoptionsController < ApplicationController
     @dog = Dog.find_by(id: params[:dog])
     @shelter = Shelter.find_by(id: @dog.shelter.id)
 
-    if validate_owner()
+    if validate_owner() && @adoption.owner_conf == true
       @adoption = Adoption.new()
       @adoption.owner_conf = true
       @owner = Owner.find_by(id: current_owner())
-      @owner.adoptions << @adoption
-      @shelter.adoptions << @adoption
-      @dog.adoptions << @adoption
       @adoption.save
 
       redirect_to owner_path(@owner), alert: 'Move in progress- you\'ll see this take effect if the shelter accepts.'
+    else
+      @adoption.destroy()
+      redirect_to owner_path(@owner), alert: 'Adoptin canceled.'
     end
   end
 

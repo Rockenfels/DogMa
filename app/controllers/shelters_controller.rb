@@ -10,8 +10,13 @@ class SheltersController < ApplicationController
 
   def create
     if session[:shelter_id].nil? && session[:shelter_id].nil?
-      @shelter = Shelter.create(shelter_params)
-      redirect_to new_shelter_session_path
+      @shelter = Shelter.new(shelter_params)
+      if @shelter.valid?
+        @shelter.save
+        redirect_to shelter_path(@shelter.id)
+      else
+        render :new
+      end
     else
       redirect_to dogs_path, alert: 'You must sign out before creating a new account.'
     end
@@ -32,7 +37,7 @@ class SheltersController < ApplicationController
   end
 
   def edit
-    if validate_shelter() && curent_shelter() == params[:id]
+    if validate_shelter() && current_shelter().to_s() == params[:id]
       @shelter = Shelter.find(current_shelter())
     else
       redirect_to :root, alert: 'Please login, signup, or edit your own profile.'
@@ -40,8 +45,14 @@ class SheltersController < ApplicationController
   end
 
   def update
-    if validate_shelter() && curent_shelter() == params[:id]
-      @shelter = Shelter.find(current_shelter())
+    if validate_shelter() && current_shelter().to_s() == params[:id]
+      @shelter = Shelter.find_by(id: current_shelter())
+      
+      if @shelter.update(shelter_params)
+        redirect_to shelter_path(@shelter.id)
+      else
+        render :edit
+      end
     else
       redirect_to :root, alert: 'Please login, signup, or edit your own profile.'
     end

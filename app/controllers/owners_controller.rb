@@ -7,9 +7,14 @@ class OwnersController < ApplicationController
   end
 
   def create
-    if session[:owner_id].nil? && session[:shelter_id].nil?
-      @owner = Owner.create(owner_params)
-      redirect_to :root
+    if session[:shelter_id].nil? && session[:shelter_id].nil?
+      @owner = Owner.new(owner_params)
+      if @owner.valid?
+        @owner.save
+        redirect_to owner_path(@owner.id)
+      else
+        render :new
+      end
     else
       redirect_to dogs_path, alert: 'You must sign out before creating a new account.'
     end
@@ -39,8 +44,11 @@ class OwnersController < ApplicationController
   def update
     if validate_owner() && current_owner().to_s == params[:id]
       @owner = Owner.find_by(id: current_owner())
-      @owner.update(owner_params)
-      redirect_to owner_path(@owner.id)
+      if @owner.update(owner_params)
+        redirect_to owner_path(@owner.id)
+      else
+        render :edit
+      end
     else
       redirect_to :root, alert: 'Please login, signup, or edit your own profile.'
     end

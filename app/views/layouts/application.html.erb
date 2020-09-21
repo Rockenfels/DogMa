@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>DogMa</title>
+    <title>Dogma</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -13,7 +13,7 @@
     <% if validate_owner() %>
     <nav id='header-nav'>
       <%= image_tag ('dogma_logo.png'), class: 'nav-image' %>
-      <h1 id='nav-title'>DogMa</h1>
+      <h1 id='nav-title'>Dogma</h1>
       <ul id='nav-ul'>
         <li><a href=<%= owner_path(current_owner()) %>>Your Account</a></li>
         <li><a href=<%= owners_path %>>Owners</a></li>
@@ -27,7 +27,7 @@
     <% elsif validate_shelter() %>
     <nav id='header-nav'>
       <%= image_tag ('dogma_logo.png'), class: 'nav-image' %>
-      <h1 id='nav-title'>DogMa</h1>
+      <h1 id='nav-title'>Dogma</h1>
       <ul id='nav-ul'>
         <li><a href=<%= shelter_path(current_shelter()) %>>Your Account</a></li>
         <li><a href=<%= owners_path %>>Owners</a></li>
@@ -41,7 +41,7 @@
     <% else %>
     <nav id='header-nav'>
       <%= image_tag ('dogma_logo.png'), class: 'nav-image' %>
-      <h1 id='nav-title'>DogMa</h1>
+      <h1 id='nav-title'>Dogma</h1>
       <ul id='nav-ul'>
         <li><a href="/">Login</a></li>
         <li><a href=<%= dogs_path %>>Dogs</a></li>

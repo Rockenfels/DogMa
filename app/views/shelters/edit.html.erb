@@ -1,6 +1,17 @@
 <h1>Update your organization's information</h1>
 
-<%= form_for @shelter, url: '/shelters' do |f| %>
+<% if @shelter.errors.any? %>
+  <div id="error_explanation">
+    <h2>There were some errors:</h2>
+    <ul>
+      <% @shelter.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @shelter, method: 'patch' do |f| %>
   Name: <%= f.text_field :name %>
   Email: <%= f.text_field :email %>
   Home State: <%= f.text_field :home_state %>
