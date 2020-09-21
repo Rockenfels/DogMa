@@ -11,7 +11,7 @@ class OwnersController < ApplicationController
       @owner = Owner.new(owner_params)
       if @owner.valid?
         @owner.save
-        redirect_to owner_path(@owner.id)
+        redirect_to new_owner_session_path
       else
         render :new
       end

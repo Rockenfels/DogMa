@@ -13,7 +13,7 @@ class SheltersController < ApplicationController
       @shelter = Shelter.new(shelter_params)
       if @shelter.valid?
         @shelter.save
-        redirect_to shelter_path(@shelter.id)
+        redirect_to new_shelter_session_path
       else
         render :new
       end
@@ -47,7 +47,7 @@ class SheltersController < ApplicationController
   def update
     if validate_shelter() && current_shelter().to_s() == params[:id]
       @shelter = Shelter.find_by(id: current_shelter())
-      
+
       if @shelter.update(shelter_params)
         redirect_to shelter_path(@shelter.id)
       else

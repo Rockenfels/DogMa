@@ -10,7 +10,7 @@
     <div class="dog-tile">
       <h3><%= dog.name %>, <%= dog.age %></h3>
       <h3><%= dog.breed %></h3>
-      <%= link_to 'Adopt', {:controller => "adoptions", :action => 'new', :dog => dog.id } %>
+      <%= link_to 'Adopt', {:controller => "adoptions", :action => 'create', :dog => dog.id } %>
     </div>
   <% end %>
 </div>
