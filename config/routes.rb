@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resource :adoptions, only: [:new, :create]
 
   get '/move', to: 'adoptions#move'
-
+  get '/old-dogs', to: 'dogs#oldDogs'
 
   get '/auth/facebook/callback' => 'owner_sessions#create'
   root to: 'static#index'

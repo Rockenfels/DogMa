@@ -7,6 +7,10 @@ class DogsController < ApplicationController
     @dogs = Dog.all
   end
 
+  def oldDogs
+    @dogs = Dog.limit(5)
+  end
+
   def new
     @dog = Dog.new()
     if session[:owner_id] && !session[:shelter_id]
